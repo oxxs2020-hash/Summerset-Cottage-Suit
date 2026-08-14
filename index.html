@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Summerset Cottage & Suites | King Suite</title>
+    <title>Summerset Cottage & Suites</title>
     <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -31,10 +31,20 @@
         }
 
         header {
-            background-color: #FFFFFF;
-            padding: 40px 20px;
+            background-image: url('Norms house front.jpeg');
+            background-size: contain;
+            background-repeat: no-repeat;
+            background-position: center top;
+            background-attachment: fixed;
+            padding: 500px 20px 40px 20px;
             text-align: center;
             border-bottom: 1px solid var(--border-light);
+            position: relative;
+        }
+
+        header h2, header p {
+            position: relative;
+            z-index: 2;
         }
 
         header h2 {
@@ -58,18 +68,55 @@
             padding: 0 40px;
         }
 
+        .suite-selector {
+            text-align: center;
+            margin: 0 0 60px 0;
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .suite-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        .suite-button {
+            background-color: #FFFFFF;
+            color: var(--text-dark);
+            border: 2px solid var(--accent-gold);
+            padding: 12px 30px;
+            font-size: 0.95em;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+        }
+
+        .suite-button:hover {
+            background-color: var(--accent-gold);
+            color: #FFFFFF;
+        }
+
+        .suite-button.active {
+            background-color: var(--accent-gold);
+            color: #FFFFFF;
+        }
+
+        .suite-content {
+            display: none;
+        }
+
+        .suite-content.active {
+            display: block;
+        }
+
         .title-wrapper {
             text-align: center;
             margin-bottom: 50px;
-        }
-        
-        .hero-image {
-            width: 100%;
-            max-height: 450px;
-            object-fit: cover;
-            border-radius: 4px;
-            margin-bottom: 30px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
         }
 
         .suite-title {
@@ -138,7 +185,7 @@
             max-width: 750px;
             margin: 0 auto 25px auto;
         }
-        
+
         .photo-gallery {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -235,9 +282,110 @@
             background-color: transparent;
             color: var(--accent-gold);
         }
+
+        /* Contact Section */
+        .contact-section {
+            background-color: #FFFFFF;
+            padding: 80px 40px;
+            text-align: center;
+            border-top: 1px solid var(--border-light);
+            margin-top: 60px;
+        }
+
+        .contact-section h2 {
+            font-size: 2.5em;
+            margin-bottom: 50px;
+            color: var(--text-dark);
+        }
+
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .contact-item h3 {
+            font-size: 1.3em;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .contact-item p {
+            color: var(--text-muted);
+            font-size: 1.05em;
+            margin: 0;
+        }
+
+        .contact-item a {
+            color: var(--accent-gold);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--text-dark);
+        }
+
+        /* Background Music Controls */
+        .music-controls {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 1000;
+        }
+
+        .music-btn {
+            background-color: var(--accent-gold);
+            color: #FFFFFF;
+            border: none;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.5em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            transition: all 0.3s ease;
+        }
+
+        .music-btn:hover {
+            transform: scale(1.1);
+            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5);
+        }
+
+        .music-btn.muted {
+            background-color: #CCCCCC;
+        }
+
+        .music-icon {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .music-btn.muted .music-icon {
+            animation: none;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-5px); }
+        }
     </style>
 </head>
 <body>
+
+<!-- Background Music -->
+<audio id="bgMusic" loop style="display: none;">
+    <source src="background-music.mp3" type="audio/mpeg">
+</audio>
+
+<div class="music-controls">
+    <button id="musicToggle" class="music-btn" title="Toggle Music">
+        <span class="music-icon">♪</span>
+    </button>
+</div>
 
 <header>
     <h2>Summerset Cottage & Suites</h2>
@@ -246,68 +394,291 @@
 
 <div class="container">
     
-    <div class="title-wrapper">
-        <h1 class="suite-title">The King Suite</h1>
-        <div class="location">Douglas, Michigan</div>
-    </div>
-
-    <div class="quick-stats">
-        <span>2 Guests</span> 
-        <span>1 Bedroom</span> 
-        <span>1 Bath</span> 
-        <span><span class="gold-accent">★ 5.0</span> Top-Rated on Airbnb (39 Reviews)</span>
-    </div>
-
-    <div class="section-block description">
-        <h3 class="section-title">A Sophisticated Escape</h3>
-        <p>Kick back and relax in this stylish, newly built property's King guest suite featuring a private entrance. Designed for ultimate comfort and relaxation, the large second-floor King Suite has been thoughtfully curated with a small kitchenette, a cozy fireplace, and a beautiful light-filled sitting area.</p>
-        <p>Strategically located on the edge of the city limits of Douglas, the suite overlooks a sweeping meadow. It is positioned perfectly for a very short walk to both Lake Michigan and downtown Douglas.</p>
-        <p>Step outside into a true paradise. The entire property features professional, high-end landscaping, enveloped by spectacular, god-like beautiful flowers and lush plants that create a serene, luxurious oasis for your stay.</p>
-    </div>
-    
-    <div class="section-block">
-        <h3 class="section-title">Tour the Suite</h3>
-        <div class="photo-gallery">
-            <img src="20260802_163705.jpg" alt="King Bed and Suite Overview">
-            <img src="20260802_163739.jpg" alt="Fireplace, TV, and Bedroom view">
-            <img src="20260802_163501.jpg" alt="Sitting Area with Loveseat">
-            <img src="20260802_163756.jpg" alt="Intimate Dining Space">
-            <img src="20260802_163844.jpg" alt="Modern Kitchenette">
+    <div class="suite-selector">
+        <div class="suite-buttons">
+            <button class="suite-button active" onclick="showSuite('king')">King Suite</button>
+            <button class="suite-button" onclick="showSuite('queen')">Queen Suite</button>
+            <button class="suite-button" onclick="showSuite('house')">Norms House & Pool</button>
         </div>
     </div>
 
-    <div class="host-banner">
-        <h3>Hosted by Norm</h3>
-        <p>Superhost &bull; 10 Years Hosting &bull; Top 5% of Homes on Airbnb</p>
-    </div>
+    <!-- KING SUITE -->
+    <div id="king" class="suite-content active">
+        <div class="title-wrapper">
+            <h1 class="suite-title">The King Suite</h1>
+            <div class="location">Douglas, Michigan</div>
+        </div>
 
-    <div class="section-block">
-        <h3 class="section-title">Curated Amenities</h3>
-        <div class="amenities-grid">
-            <div class="amenity-item">
-                <h4>Private Entrance</h4>
-                <p>Direct and secure access to your tranquil second-floor suite, ensuring complete privacy during your stay.</p>
+        <div class="quick-stats">
+            <span>2 Guests</span> 
+            <span>1 Bedroom</span> 
+            <span>1 Bath</span> 
+            <span><span class="gold-accent">★ 5.0</span> Top-Rated on Airbnb (39 Reviews)</span>
+        </div>
+
+        <div class="section-block description">
+            <h3 class="section-title">A Sophisticated Escape</h3>
+            <p>Kick back and relax in this stylish, newly built property's King guest suite featuring a private entrance. Designed for ultimate comfort and relaxation, the large second-floor King Suite has been thoughtfully curated with a small kitchenette, a cozy fireplace, and a beautiful light-filled sitting area.</p>
+            <p>Strategically located on the edge of the city limits of Douglas, the suite overlooks a sweeping meadow. It is positioned perfectly for a very short walk to both Lake Michigan and downtown Douglas.</p>
+            <p>Step outside into a true paradise. The entire property features professional, high-end landscaping, enveloped by spectacular, god-like beautiful flowers and lush plants that create a serene, luxurious oasis for your stay.</p>
+        </div>
+        
+        <div class="section-block">
+            <h3 class="section-title">Tour the Suite</h3>
+            <div class="photo-gallery">
+                <img src="NORM KING SUIT/Screenshot_20260812_234620_Airbnb.jpg" alt="King Suite Image 1">
+                <img src="NORM KING SUIT/Screenshot_20260812_234624_Airbnb.jpg" alt="King Suite Image 2">
+                <img src="NORM KING SUIT/Screenshot_20260812_234627_Airbnb.jpg" alt="King Suite Image 3">
+                <img src="NORM KING SUIT/Screenshot_20260812_234629_Airbnb.jpg" alt="King Suite Image 4">
+                <img src="NORM KING SUIT/Screenshot_20260812_234632_Airbnb.jpg" alt="King Suite Image 5">
+                <img src="NORM KING SUIT/Screenshot_20260812_234635_Airbnb.jpg" alt="King Suite Image 6">
+                <img src="NORM KING SUIT/Screenshot_20260812_234638_Airbnb.jpg" alt="King Suite Image 7">
+                <img src="NORM KING SUIT/Screenshot_20260812_234641_Airbnb.jpg" alt="King Suite Image 8">
+                <img src="NORM KING SUIT/Screenshot_20260812_234644_Airbnb.jpg" alt="King Suite Image 9">
+                <img src="NORM KING SUIT/Screenshot_20260812_234647_Airbnb.jpg" alt="King Suite Image 10">
+                <img src="NORM KING SUIT/Screenshot_20260812_234650_Airbnb.jpg" alt="King Suite Image 11">
+                <img src="NORM KING SUIT/Screenshot_20260812_234653_Airbnb.jpg" alt="King Suite Image 12">
+                <img src="NORM KING SUIT/Screenshot_20260812_234707_Airbnb.jpg" alt="King Suite Image 13">
             </div>
-            <div class="amenity-item">
-                <h4>Saltwater Pool</h4>
-                <p>Overlooking the meadow, open until September 28th. Accessible to all adults, and children under 18 accompanied by an adult.</p>
+        </div>
+
+        <div class="host-banner">
+            <h3>Hosted by Norm</h3>
+            <p>Superhost &bull; 10 Years Hosting &bull; Top 5% of Homes on Airbnb</p>
+        </div>
+
+        <div class="section-block">
+            <h3 class="section-title">Curated Amenities</h3>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <h4>Premium Bedding</h4>
+                    <p>Luxurious high-thread count linens and plush pillows</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Fireplace</h4>
+                    <p>Cozy ambiance for relaxing evenings</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Kitchenette</h4>
+                    <p>Fully equipped with modern appliances</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Smart TV & WiFi</h4>
+                    <p>Entertainment and connectivity at your fingertips</p>
+                </div>
             </div>
-            <div class="amenity-item">
-                <h4>Suite Comforts</h4>
-                <p>Relax by the fireplace, prepare light refreshments in the kitchenette, and unwind in the beautifully lit sitting area.</p>
-            </div>
-            <div class="amenity-item">
-                <h4>Seasonal Exclusivity</h4>
-                <p>An idyllic retreat available for exclusive bookings from the refreshing days of April through the autumn glow of October.</p>
-            </div>
+        </div>
+
+        <div class="booking-section">
+            <a href="#" class="book-button">Reserve Your Stay</a>
         </div>
     </div>
 
-    <div class="booking-section">
-        <a href="#" class="book-button">Reserve Your Stay</a>
+    <!-- QUEEN SUITE -->
+    <div id="queen" class="suite-content">
+        <div class="title-wrapper">
+            <h1 class="suite-title">The Queen Suite</h1>
+            <div class="location">Douglas, Michigan</div>
+        </div>
+
+        <div class="quick-stats">
+            <span>2 Guests</span> 
+            <span>1 Bedroom</span> 
+            <span>1 Bath</span> 
+            <span><span class="gold-accent">★ 4.9</span> Top-Rated on Airbnb (28 Reviews)</span>
+        </div>
+
+        <div class="section-block description">
+            <h3 class="section-title">Elegant Comfort & Charm</h3>
+            <p>Experience refined elegance in this beautifully appointed Queen Suite, featuring a spacious bedroom with a luxurious queen bed. Offering a serene escape with modern amenities, the suite includes a sophisticated sitting area and premium finishes throughout.</p>
+            <p>Located in the heart of Douglas with easy access to Lake Michigan's pristine beaches and the vibrant downtown area, this suite provides the perfect balance between tranquility and accessibility for exploring the region.</p>
+            <p>Wake up to stunning views of the landscaped gardens while enjoying the peaceful ambiance of this exclusive retreat, complete with all the touches that make your stay truly memorable.</p>
+        </div>
+        
+        <div class="section-block">
+            <h3 class="section-title">Tour the Suite</h3>
+            <div class="photo-gallery">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231400_Samsung Browser.jpg" alt="Queen Suite Image 1">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231403_Samsung Browser.jpg" alt="Queen Suite Image 2">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231407_Samsung Browser.jpg" alt="Queen Suite Image 3">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231410_Samsung Browser.jpg" alt="Queen Suite Image 4">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231414_Samsung Browser.jpg" alt="Queen Suite Image 5">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231417_Samsung Browser.jpg" alt="Queen Suite Image 6">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231420_Samsung Browser.jpg" alt="Queen Suite Image 7">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231424_Samsung Browser.jpg" alt="Queen Suite Image 8">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231427_Samsung Browser.jpg" alt="Queen Suite Image 9">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231430_Samsung Browser.jpg" alt="Queen Suite Image 10">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231434_Samsung Browser.jpg" alt="Queen Suite Image 11">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231437_Samsung Browser.jpg" alt="Queen Suite Image 12">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231440_Samsung Browser.jpg" alt="Queen Suite Image 13">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231451_Samsung Browser.jpg" alt="Queen Suite Image 14">
+            </div>
+        </div>
+
+        <div class="host-banner">
+            <h3>Hosted by Norm</h3>
+            <p>Superhost &bull; 10 Years Hosting &bull; Top 5% of Homes on Airbnb</p>
+        </div>
+
+        <div class="section-block">
+            <h3 class="section-title">Curated Amenities</h3>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <h4>Luxury Bedding</h4>
+                    <p>Premium quilted comfort for perfect sleep</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Sitting Area</h4>
+                    <p>Perfect spot for reading and relaxation</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Modern En-Suite</h4>
+                    <p>Sleek bathroom with premium toiletries</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Garden Views</h4>
+                    <p>Serene vistas of the landscaped grounds</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-section">
+            <a href="#" class="book-button">Reserve Your Stay</a>
+        </div>
+    </div>
+
+    <!-- NORMS HOUSE & POOL -->
+    <div id="house" class="suite-content">
+        <div class="title-wrapper">
+            <h1 class="suite-title">Norms House & Pool</h1>
+            <div class="location">Douglas, Michigan</div>
+        </div>
+
+        <div class="quick-stats">
+            <span>Full Home</span> 
+            <span>Multiple Bedrooms</span> 
+            <span>Premium Amenities</span> 
+            <span><span class="gold-accent">★ 5.0</span> Exceptional Property</span>
+        </div>
+
+        <div class="section-block description">
+            <h3 class="section-title">Your Private Paradise</h3>
+            <p>Escape to this stunning full-home rental featuring a resort-style swimming pool and expansive grounds. Perfect for families and groups seeking a luxurious retreat with complete privacy and premium amenities.</p>
+            <p>This exceptional property boasts professionally landscaped gardens with high-end outdoor living spaces, including dining areas and sun lounges overlooking the pristine pool area.</p>
+            <p>Experience the ultimate in Michigan hospitality with elegant accommodations, beautiful outdoor spaces, and all the amenities needed for an unforgettable vacation.</p>
+        </div>
+        
+        <div class="section-block">
+            <h3 class="section-title">Explore the Property</h3>
+            <div class="photo-gallery">
+                <img src="Norms house front.jpeg" alt="House Front View">
+                <img src="Norms House backyard pool.jpeg" alt="Backyard Pool">
+                <img src="Norms house Yard table.jpeg" alt="Outdoor Dining Area">
+                <img src="Norma.jpeg" alt="Additional Property View">
+            </div>
+        </div>
+
+        <div class="host-banner">
+            <h3>Hosted by Norm</h3>
+            <p>Superhost &bull; 10 Years Hosting &bull; Top 5% of Homes on Airbnb</p>
+        </div>
+
+        <div class="section-block">
+            <h3 class="section-title">Premium Features</h3>
+            <div class="amenities-grid">
+                <div class="amenity-item">
+                    <h4>Resort Pool</h4>
+                    <p>Crystal-clear heated swimming pool</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Outdoor Dining</h4>
+                    <p>Multiple dining and lounging areas</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Landscaped Gardens</h4>
+                    <p>Professionally designed outdoor spaces</p>
+                </div>
+                <div class="amenity-item">
+                    <h4>Full Home Rental</h4>
+                    <p>Complete privacy and luxury accommodations</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="booking-section">
+            <a href="#" class="book-button">Reserve Your Stay</a>
+        </div>
     </div>
 
 </div>
+
+<!-- CONTACT SECTION -->
+<div class="contact-section">
+    <h2>Get In Touch</h2>
+    <div class="contact-grid">
+        <div class="contact-item">
+            <h3>Property Name</h3>
+            <p>Summerset Cottage & Suites</p>
+        </div>
+        <div class="contact-item">
+            <h3>Address</h3>
+            <p>6849 Wiley Road<br>Douglas, MI 49406-0992</p>
+        </div>
+        <div class="contact-item">
+            <h3>Phone</h3>
+            <p><a href="tel:(616)283-0189">(616) 283-0189</a></p>
+        </div>
+        <div class="contact-item">
+            <h3>Email</h3>
+            <p><a href="mailto:normjones0529@hotmail.com">normjones0529@hotmail.com</a></p>
+        </div>
+        <div class="contact-item">
+            <h3>Host</h3>
+            <p>Norm Jones</p>
+        </div>
+    </div>
+</div>
+
+<script>
+    function showSuite(suite) {
+        // Hide all suite contents
+        document.getElementById('king').classList.remove('active');
+        document.getElementById('queen').classList.remove('active');
+        document.getElementById('house').classList.remove('active');
+        
+        // Remove active class from all buttons
+        const buttons = document.querySelectorAll('.suite-button');
+        buttons.forEach(btn => btn.classList.remove('active'));
+        
+        // Show selected suite
+        document.getElementById(suite).classList.add('active');
+        
+        // Add active class to clicked button
+        event.target.classList.add('active');
+    }
+
+    // Background Music Control
+    const bgMusic = document.getElementById('bgMusic');
+    const musicToggle = document.getElementById('musicToggle');
+    let isPlaying = true;
+
+    musicToggle.addEventListener('click', function() {
+        if (isPlaying) {
+            bgMusic.pause();
+            musicToggle.classList.add('muted');
+            isPlaying = false;
+        } else {
+            bgMusic.play();
+            musicToggle.classList.remove('muted');
+            isPlaying = true;
+        }
+    });
+
+    // Autoplay music when page loads
+    bgMusic.play().catch(function(err) {
+        console.log("Autoplay blocked by browser. User can click music button to play.");
+    });
+</script>
 
 </body>
 </html>
