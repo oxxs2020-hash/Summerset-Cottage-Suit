@@ -212,8 +212,27 @@
         }
 
         .gold-accent {
-            color: var(--accent-gold);
-            font-weight: 400;
+            color: #E5A524;
+            font-weight: 500;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .star-icon {
+            width: 20px;
+            height: 20px;
+            fill: #F5B027;
+            filter: drop-shadow(0 2px 4px rgba(245, 176, 39, 0.35));
+            display: inline-block;
+            vertical-align: -3px;
+            flex-shrink: 0;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .quick-stats span:hover .star-icon,
+        .star-icon:hover {
+            transform: scale(1.25) rotate(12deg);
         }
 
         .section-block {
@@ -523,7 +542,9 @@
 
 <div class="music-controls">
     <button id="musicToggle" class="music-btn" title="Toggle Music">
-        <span class="music-icon">♪</span>
+        <span class="music-icon">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display: block;"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
+        </span>
     </button>
 </div>
 
@@ -556,7 +577,7 @@
         <div class="quick-stats">
             <span>Two Suites</span> 
             <span>Premium Amenities</span> 
-            <span>Top 5★ Rated at Airbnb</span>
+            <span>Top 5<svg class="star-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> Rated at Airbnb</span>
         </div>
 
         <div class="section-block description">
@@ -627,7 +648,7 @@
             <span>2 Guests</span> 
             <span>1 Bedroom</span> 
             <span>1 Bath</span> 
-            <span><span class="gold-accent">★ 5.0</span> Top-Rated on Airbnb (39 Reviews)</span>
+            <span><span class="gold-accent"><svg class="star-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 5.0</span> Top-Rated on Airbnb (39 Reviews)</span>
         </div>
 
         <div class="section-block description">
@@ -700,7 +721,7 @@
             <span>2 Guests</span> 
             <span>1 Bedroom</span> 
             <span>1 Bath</span> 
-            <span><span class="gold-accent">★ 4.9</span> Top-Rated on Airbnb (28 Reviews)</span>
+            <span><span class="gold-accent"><svg class="star-icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 4.9</span> Top-Rated on Airbnb (28 Reviews)</span>
         </div>
 
         <div class="section-block description">
