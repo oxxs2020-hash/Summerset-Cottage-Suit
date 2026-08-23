@@ -62,6 +62,64 @@
             text-transform: uppercase;
         }
 
+        .retreat-subtitle {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 16px;
+            margin: 12px 0 0 0;
+            font-size: 0.85em;
+            letter-spacing: 3px;
+            color: var(--accent-gold);
+            text-transform: uppercase;
+            position: relative;
+        }
+
+        .header-butterfly {
+            width: 32px;
+            height: auto;
+            display: inline-block;
+            vertical-align: middle;
+            filter: drop-shadow(0 2px 5px rgba(0, 0, 0, 0.2));
+            transition: transform 0.6s cubic-bezier(0.25, 1, 0.5, 1), filter 0.4s ease;
+            cursor: pointer;
+            pointer-events: auto;
+            will-change: transform;
+            animation: butterflyGentleFloat 4s ease-in-out infinite alternate;
+        }
+
+        .butterfly-left {
+            animation-delay: 0s;
+        }
+
+        .butterfly-right {
+            animation-delay: -2s;
+        }
+
+        @keyframes butterflyGentleFloat {
+            0% {
+                transform: translateY(0px) rotate(0deg) scale(1);
+            }
+            50% {
+                transform: translateY(-4px) rotate(3deg) scale(1.04);
+            }
+            100% {
+                transform: translateY(-8px) rotate(-3deg) scale(1.06);
+            }
+        }
+
+        .retreat-subtitle:hover .butterfly-left,
+        .header-butterfly.butterfly-left:hover {
+            transform: translateY(-10px) translateX(-5px) rotate(-12deg) scale(1.2) !important;
+            filter: drop-shadow(0 8px 16px rgba(197, 160, 89, 0.45));
+        }
+
+        .retreat-subtitle:hover .butterfly-right,
+        .header-butterfly.butterfly-right:hover {
+            transform: translateY(-10px) translateX(5px) rotate(12deg) scale(1.2) !important;
+            filter: drop-shadow(0 8px 16px rgba(197, 160, 89, 0.45));
+        }
+
         .container {
             max-width: 1000px;
             margin: 60px auto;
@@ -471,7 +529,11 @@
 
 <header>
     <h2>Summerset Cottage & Suites</h2>
-    <p>Boutique Retreat</p>
+    <p class="retreat-subtitle">
+        <img src="butterfly-left.png" alt="Monarch Butterfly" class="header-butterfly butterfly-left">
+        <span>Boutique Retreat</span>
+        <img src="butterfly-right.png" alt="Monarch Butterfly" class="header-butterfly butterfly-right">
+    </p>
 </header>
 
 <div class="container">
