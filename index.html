@@ -187,24 +187,58 @@
         }
 
         .photo-gallery {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            scroll-snap-type: x proximity;
+            padding: 40px 15%;
             margin-top: 40px;
+            margin-bottom: 30px;
+            perspective: 1200px;
+            perspective-origin: center center;
+            transform-style: preserve-3d;
+            -ms-overflow-style: none;
+            scrollbar-width: none;
+            cursor: grab;
+            user-select: none;
+            -webkit-user-select: none;
+            scroll-behavior: smooth;
+        }
+
+        .photo-gallery.grabbing {
+            cursor: grabbing;
+            scroll-behavior: auto;
+            scroll-snap-type: none;
+        }
+
+        .photo-gallery::-webkit-scrollbar {
+            display: none;
         }
 
         .photo-gallery img {
-            width: 100%;
-            height: 280px;
+            flex: 0 0 75vw;
+            max-width: 580px;
+            height: 380px;
             object-fit: cover;
-            border-radius: 4px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
-            transition: transform 0.4s ease, box-shadow 0.4s ease;
+            border-radius: 8px;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+            scroll-snap-align: center;
+            transform-origin: center center;
+            will-change: transform, opacity;
+            -webkit-user-drag: none;
+            user-select: none;
+            transition: box-shadow 0.3s ease;
         }
 
-        .photo-gallery img:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 30px rgba(0,0,0,0.1);
+        @media (min-width: 768px) {
+            .photo-gallery {
+                gap: 40px;
+                padding: 50px 20%;
+            }
+            .photo-gallery img {
+                flex: 0 0 540px;
+                height: 420px;
+            }
         }
 
         .host-banner {
@@ -711,6 +745,9 @@
     </div>
 </div>
 
+<!-- GSAP Library -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+
 <script>
     function showSuite(suite) {
         // Hide all suite contents
@@ -727,6 +764,122 @@
         
         // Add active class to clicked button
         event.target.classList.add('active');
+
+        // Re-evaluate GSAP perspective when switching tabs
+        setTimeout(() => {
+            const activeContent = document.getElementById(suite);
+            if (activeContent) {
+                const gal = activeContent.querySelector('.photo-gallery');
+                if (gal && gal._updatePerspective) {
+                    gal._updatePerspective();
+                }
+            }
+        }, 50);
+    }
+
+    // GSAP Horizontal Perspective Scroll & Drag Engine
+    function initGalleryPerspective() {
+        const galleries = document.querySelectorAll('.photo-gallery');
+
+        galleries.forEach(gallery => {
+            const images = gallery.querySelectorAll('img');
+            let isDown = false;
+            let startX, scrollLeft;
+
+            function updatePerspective() {
+                const rect = gallery.getBoundingClientRect();
+                const galleryCenter = rect.left + rect.width / 2;
+                const maxDistance = rect.width / 2;
+
+                images.forEach(img => {
+                    const imgRect = img.getBoundingClientRect();
+                    const imgCenter = imgRect.left + imgRect.width / 2;
+                    // Normalized distance from center (-1 to 1 across visible viewport)
+                    const distFromCenter = (imgCenter - galleryCenter) / maxDistance;
+                    const clampedDist = Math.max(-1.5, Math.min(1.5, distFromCenter));
+                    const absDist = Math.min(1, Math.abs(clampedDist));
+
+                    // Scale up to 1.1 at the center, smoothly down to 0.82 at edges
+                    const scale = 1.1 - (absDist * 0.28);
+
+                    // Dynamic 3D Y-axis rotation based on scroll progress along X-axis
+                    const rotateY = -clampedDist * 32;
+
+                    // Subtle dynamic tilt on Z-axis
+                    const rotateZ = clampedDist * 2.5;
+
+                    // Opacity focus towards center
+                    const opacity = 1 - (absDist * 0.35);
+
+                    // 3D depth pop towards viewer at center
+                    const translateZ = (1 - absDist) * 50;
+
+                    gsap.to(img, {
+                        scale: scale,
+                        rotationY: rotateY,
+                        rotationZ: rotateZ,
+                        z: translateZ,
+                        opacity: opacity,
+                        duration: 0.25,
+                        ease: 'power1.out',
+                        overwrite: 'auto'
+                    });
+
+                    img.style.zIndex = Math.round((1 - absDist) * 100);
+                });
+            }
+
+            gallery._updatePerspective = updatePerspective;
+
+            // Mouse Drag to Scroll
+            gallery.addEventListener('mousedown', (e) => {
+                isDown = true;
+                gallery.classList.add('grabbing');
+                startX = e.pageX - gallery.offsetLeft;
+                scrollLeft = gallery.scrollLeft;
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (isDown) {
+                    isDown = false;
+                    gallery.classList.remove('grabbing');
+                }
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - gallery.offsetLeft;
+                const walk = (x - startX) * 1.5;
+                gallery.scrollLeft = scrollLeft - walk;
+                updatePerspective();
+            });
+
+            // Smooth Horizontal Mouse Wheel Scroll
+            gallery.addEventListener('wheel', (e) => {
+                if (Math.abs(e.deltaY) > Math.abs(e.deltaX)) {
+                    e.preventDefault();
+                    gallery.scrollLeft += e.deltaY;
+                    updatePerspective();
+                }
+            }, { passive: false });
+
+            // Scroll Listener
+            gallery.addEventListener('scroll', () => {
+                updatePerspective();
+            }, { passive: true });
+
+            // Initial calculation
+            updatePerspective();
+            window.addEventListener('resize', updatePerspective);
+        });
+    }
+
+    // Initialize after DOM and GSAP load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initGalleryPerspective);
+    } else {
+        initGalleryPerspective();
     }
 
     // Background Music Control
