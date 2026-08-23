@@ -824,51 +824,6 @@
             color: var(--text-dark);
         }
 
-        /* Background Music Controls */
-        .music-controls {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            z-index: 1000;
-        }
-
-        .music-btn {
-            background-color: var(--accent-gold);
-            color: #FFFFFF;
-            border: none;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 1.5em;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
-            transition: all 0.3s ease;
-        }
-
-        .music-btn:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(197, 160, 89, 0.5);
-        }
-
-        .music-btn.muted {
-            background-color: #CCCCCC;
-        }
-
-        .music-icon {
-            animation: float 3s ease-in-out infinite;
-        }
-
-        .music-btn.muted .music-icon {
-            animation: none;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-5px); }
-        }
 
         /* Map Section */
         .map-section {
@@ -921,18 +876,6 @@
 </head>
 <body>
 
-<!-- Background Music -->
-<audio id="bgMusic" loop style="display: none;">
-    <source src="Music.mp3" type="audio/mpeg">
-</audio>
-
-<div class="music-controls">
-    <button id="musicToggle" class="music-btn" title="Toggle Music">
-        <span class="music-icon">
-            <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor" style="display: block;"><path d="M12 3v10.55c-.59-.34-1.27-.55-2-.55-2.21 0-4 1.79-4 4s1.79 4 4 4 4-1.79 4-4V7h4V3h-6z"/></svg>
-        </span>
-    </button>
-</div>
 
 <header>
     <h2>Summerset Cottage & Suites</h2>
@@ -977,17 +920,17 @@
             <h3 class="section-title">Explore the Property</h3>
             <p style="text-align: center; color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">Swipe or drag to view gallery</p>
             <div class="photo-gallery">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0023.jpg" alt="House Property 1">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0044.jpg" alt="House Property 2">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0046.jpg" alt="House Property 3">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0050.jpg" alt="House Property 4">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0098.jpg" alt="House Property 5">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0125(1).jpg" alt="House Property 6">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0157.jpg" alt="House Property 7">
-                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0184.jpg" alt="House Property 8">
-                <img src="NORM HOUSE AND POOL/Norms house Yard table.jpeg" alt="Outdoor Dining Area">
-                <img src="NORM HOUSE AND POOL/Screenshot_20260812_234649_Airbnb.jpg" alt="Pool View 1">
-                <img src="NORM HOUSE AND POOL/Screenshot_20260812_234652_Airbnb.jpg" alt="Pool View 2">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0023.jpg" alt="House Property 1" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0044.jpg" alt="House Property 2" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0046.jpg" alt="House Property 3" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0050.jpg" alt="House Property 4" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0098.jpg" alt="House Property 5" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0125(1).jpg" alt="House Property 6" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0157.jpg" alt="House Property 7" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/IMG-20260802-WA0184.jpg" alt="House Property 8" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/Norms house Yard table.jpeg" alt="Outdoor Dining Area" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/Screenshot_20260812_234649_Airbnb.jpg" alt="Pool View 1" loading="lazy" decoding="async">
+                <img src="NORM HOUSE AND POOL/Screenshot_20260812_234652_Airbnb.jpg" alt="Pool View 2" loading="lazy" decoding="async">
             </div>
         </div>
 
@@ -1012,8 +955,8 @@
                     <p>Professionally designed outdoor spaces</p>
                 </div>
                 <div class="amenity-item">
-                    <h4>Full Home Rental</h4>
-                    <p>Complete privacy and luxury accommodations</p>
+                    <h4>Two Suites Rental</h4>
+                    <p>Complete privacy and luxury accommodation in the Queen or King Suite</p>
                 </div>
             </div>
         </div>
@@ -1146,19 +1089,19 @@
             <h3 class="section-title">Tour the Suite</h3>
             <p style="text-align: center; color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">Swipe or drag to view gallery</p>
             <div class="photo-gallery">
-                <img src="NORM KING SUIT/Screenshot_20260812_234620_Airbnb.jpg" alt="King Suite Image 1">
-                <img src="NORM KING SUIT/Screenshot_20260812_234624_Airbnb.jpg" alt="King Suite Image 2">
-                <img src="NORM KING SUIT/Screenshot_20260812_234627_Airbnb.jpg" alt="King Suite Image 3">
-                <img src="NORM KING SUIT/Screenshot_20260812_234629_Airbnb.jpg" alt="King Suite Image 4">
-                <img src="NORM KING SUIT/Screenshot_20260812_234632_Airbnb.jpg" alt="King Suite Image 5">
-                <img src="NORM KING SUIT/Screenshot_20260812_234635_Airbnb.jpg" alt="King Suite Image 6">
-                <img src="NORM KING SUIT/Screenshot_20260812_234638_Airbnb.jpg" alt="King Suite Image 7">
-                <img src="NORM KING SUIT/Screenshot_20260812_234641_Airbnb.jpg" alt="King Suite Image 8">
-                <img src="NORM KING SUIT/Screenshot_20260812_234643_Airbnb.jpg" alt="King Suite Image 9">
-                <img src="NORM KING SUIT/Screenshot_20260812_234646_Airbnb.jpg" alt="King Suite Image 10">
-                <img src="NORM KING SUIT/Screenshot_20260812_234702_Airbnb.jpg" alt="King Suite Image 11">
-                <img src="NORM KING SUIT/Screenshot_20260812_234704_Airbnb.jpg" alt="King Suite Image 12">
-                <img src="NORM KING SUIT/Screenshot_20260812_234707_Airbnb.jpg" alt="King Suite Image 13">
+                <img src="NORM KING SUIT/Screenshot_20260812_234620_Airbnb.jpg" alt="King Suite Image 1" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234624_Airbnb.jpg" alt="King Suite Image 2" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234627_Airbnb.jpg" alt="King Suite Image 3" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234629_Airbnb.jpg" alt="King Suite Image 4" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234632_Airbnb.jpg" alt="King Suite Image 5" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234635_Airbnb.jpg" alt="King Suite Image 6" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234638_Airbnb.jpg" alt="King Suite Image 7" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234641_Airbnb.jpg" alt="King Suite Image 8" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234643_Airbnb.jpg" alt="King Suite Image 9" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234646_Airbnb.jpg" alt="King Suite Image 10" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234702_Airbnb.jpg" alt="King Suite Image 11" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234704_Airbnb.jpg" alt="King Suite Image 12" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234707_Airbnb.jpg" alt="King Suite Image 13" loading="lazy" decoding="async">
             </div>
         </div>
 
@@ -1317,23 +1260,23 @@
             <h3 class="section-title">Tour the Suite</h3>
             <p style="text-align: center; color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">Swipe or drag to view gallery</p>
             <div class="photo-gallery">
-                <img src="NORM QUEEN SUIT/pic tv.jpeg" alt="Queen Suite Fireplace and TV">
-                <img src="NORM KING SUIT/Screenshot_20260812_234635_Airbnb.jpg" alt="Queen Suite Bedroom & Fireplace">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231400_Samsung Browser.jpg" alt="Queen Suite Image 1">
-                <img src="NORM QUEEN SUIT/pic tv3.jpeg" alt="Queen Suite Image 4">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231404_Samsung Browser.jpg" alt="Queen Suite Image 2">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231407_Samsung Browser.jpg" alt="Queen Suite Image 3">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231410_Samsung Browser.jpg" alt="Queen Suite Image 4">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231413_Samsung Browser.jpg" alt="Queen Suite Image 5">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231416_Samsung Browser.jpg" alt="Queen Suite Image 6">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231420_Samsung Browser.jpg" alt="Queen Suite Image 7">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231425_Samsung Browser.jpg" alt="Queen Suite Image 8">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231428_Samsung Browser.jpg" alt="Queen Suite Image 9">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231431_Samsung Browser.jpg" alt="Queen Suite Image 10">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231441_Samsung Browser.jpg" alt="Queen Suite Image 11">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231444_Samsung Browser.jpg" alt="Queen Suite Image 12">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231447_Samsung Browser.jpg" alt="Queen Suite Image 13">
-                <img src="NORM QUEEN SUIT/Screenshot_20260812_231451_Samsung Browser.jpg" alt="Queen Suite Image 14">
+                <img src="NORM QUEEN SUIT/pic tv.jpeg" alt="Queen Suite Fireplace and TV" loading="lazy" decoding="async">
+                <img src="NORM KING SUIT/Screenshot_20260812_234635_Airbnb.jpg" alt="Queen Suite Bedroom & Fireplace" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231400_Samsung Browser.jpg" alt="Queen Suite Image 1" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/pic tv3.jpeg" alt="Queen Suite Image 4" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231404_Samsung Browser.jpg" alt="Queen Suite Image 2" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231407_Samsung Browser.jpg" alt="Queen Suite Image 3" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231410_Samsung Browser.jpg" alt="Queen Suite Image 4" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231413_Samsung Browser.jpg" alt="Queen Suite Image 5" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231416_Samsung Browser.jpg" alt="Queen Suite Image 6" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231420_Samsung Browser.jpg" alt="Queen Suite Image 7" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231425_Samsung Browser.jpg" alt="Queen Suite Image 8" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231428_Samsung Browser.jpg" alt="Queen Suite Image 9" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231431_Samsung Browser.jpg" alt="Queen Suite Image 10" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231441_Samsung Browser.jpg" alt="Queen Suite Image 11" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231444_Samsung Browser.jpg" alt="Queen Suite Image 12" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231447_Samsung Browser.jpg" alt="Queen Suite Image 13" loading="lazy" decoding="async">
+                <img src="NORM QUEEN SUIT/Screenshot_20260812_231451_Samsung Browser.jpg" alt="Queen Suite Image 14" loading="lazy" decoding="async">
             </div>
         </div>
 
@@ -1667,22 +1610,6 @@
         initGalleryPerspective();
     }
 
-    // Background Music Control
-    const bgMusic = document.getElementById('bgMusic');
-    const musicToggle = document.getElementById('musicToggle');
-    let isPlaying = true;
-
-    musicToggle.addEventListener('click', function() {
-        if (isPlaying) {
-            bgMusic.pause();
-            musicToggle.classList.add('muted');
-            isPlaying = false;
-        } else {
-            bgMusic.play();
-            musicToggle.classList.remove('muted');
-            isPlaying = true;
-        }
-    });
 
     // ==========================================
     // Interactive Airbnb Booking Widget Logic
