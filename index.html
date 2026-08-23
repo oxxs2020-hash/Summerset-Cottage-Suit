@@ -30,36 +30,39 @@
             margin: 0;
         }
 
-        header {
+        .hero-banner {
+            width: 100%;
+            height: 540px;
             background-image: url('Norms house front.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center top;
             background-attachment: fixed;
-            padding: 500px 20px 40px 20px;
-            text-align: center;
             border-bottom: 1px solid var(--border-light);
             position: relative;
         }
 
-        header h2, header p {
-            position: relative;
-            z-index: 2;
+        @media (max-width: 768px) {
+            .hero-banner {
+                height: 380px;
+                background-attachment: scroll;
+            }
         }
 
-        header h2 {
-            font-size: 1.8em;
+        .brand-header {
+            background-color: var(--primary-bg);
+            padding: 50px 20px 30px 20px;
+            text-align: center;
+            border-bottom: 1px solid var(--border-light);
+        }
+
+        .brand-header h1 {
+            font-size: clamp(1.8em, 4vw, 2.6em);
             letter-spacing: 4px;
             text-transform: uppercase;
             color: var(--text-dark);
-        }
-
-        header p {
-            margin: 10px 0 0 0;
-            font-size: 0.85em;
-            letter-spacing: 3px;
-            color: var(--accent-gold);
-            text-transform: uppercase;
+            margin: 0;
+            font-weight: 400;
         }
 
         .retreat-subtitle {
@@ -877,8 +880,10 @@
 <body>
 
 
-<header>
-    <h2>Summerset Cottage & Suites</h2>
+<div class="hero-banner" role="img" aria-label="Summerset Cottage Front Grounds"></div>
+
+<header class="brand-header">
+    <h1>Summerset Cottage & Suites</h1>
     <p class="retreat-subtitle">
         <img src="butterfly-left.svg" alt="Yellow Butterfly" class="header-butterfly butterfly-left">
         <span>Boutique Retreat</span>
@@ -899,7 +904,7 @@
     <!-- NORMS HOUSE & POOL -->
     <div id="house" class="suite-content active">
         <div class="title-wrapper">
-            <h1 class="suite-title">Norms House & Pool</h1>
+            <h2 class="suite-title">Norms House & Pool</h2>
             <div class="location">Douglas, Michigan</div>
         </div>
 
@@ -1067,7 +1072,7 @@
     <!-- KING SUITE -->
     <div id="king" class="suite-content">
         <div class="title-wrapper">
-            <h1 class="suite-title">The King Suite</h1>
+            <h2 class="suite-title">The King Suite</h2>
             <div class="location">Douglas, Michigan</div>
         </div>
 
@@ -1238,7 +1243,7 @@
     <!-- QUEEN SUITE -->
     <div id="queen" class="suite-content">
         <div class="title-wrapper">
-            <h1 class="suite-title">The Queen Suite</h1>
+            <h2 class="suite-title">The Queen Suite</h2>
             <div class="location">Douglas, Michigan</div>
         </div>
 
