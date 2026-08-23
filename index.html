@@ -66,9 +66,9 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 16px;
-            margin: 12px 0 0 0;
-            font-size: clamp(0.85em, 2vw, 1em);
+            gap: 18px;
+            margin: 14px 0 0 0;
+            font-size: clamp(0.85em, 2vw, 1.05em);
             letter-spacing: 3px;
             color: var(--accent-gold);
             text-transform: uppercase;
@@ -76,66 +76,74 @@
         }
 
         .header-butterfly {
-            width: clamp(38px, 5vw, 48px);
+            width: clamp(48px, 5.5vw, 60px);
             height: auto;
             display: inline-block;
             vertical-align: middle;
-            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.22));
+            filter: drop-shadow(0 3px 10px rgba(245, 158, 11, 0.4));
             cursor: pointer;
             pointer-events: auto;
-            will-change: transform;
+            will-change: transform, filter;
+            -webkit-transform-origin: center center;
+            transform-origin: center center;
             transition: filter 0.4s ease, transform 0.4s ease;
         }
 
         .butterfly-left {
-            animation: naturalFloatLeft 4.8s ease-in-out infinite alternate;
+            animation: realisticButterflyFloatLeft 4.5s ease-in-out infinite;
         }
 
         .butterfly-right {
-            animation: naturalFloatRight 4.8s ease-in-out infinite alternate;
-            animation-delay: -2.4s;
+            animation: realisticButterflyFloatRight 4.5s ease-in-out infinite;
+            animation-delay: -2.25s;
         }
 
-        @keyframes naturalFloatLeft {
+        @keyframes realisticButterflyFloatLeft {
             0% {
-                transform: translateY(0px) rotate(0deg) scale(1);
+                transform: translateY(0px) rotate(0deg) scale(1) scaleX(1);
             }
-            33% {
-                transform: translateY(-4px) rotate(2.5deg) scale(1.03);
+            25% {
+                transform: translateY(-5px) rotate(3deg) scale(1.04) scaleX(0.92);
             }
-            66% {
-                transform: translateY(-7px) rotate(-2deg) scale(1.05);
+            50% {
+                transform: translateY(-9px) rotate(-2deg) scale(1.06) scaleX(1.04);
+            }
+            75% {
+                transform: translateY(-4px) rotate(2deg) scale(1.02) scaleX(0.94);
             }
             100% {
-                transform: translateY(-3px) rotate(1.5deg) scale(1.02);
+                transform: translateY(0px) rotate(0deg) scale(1) scaleX(1);
             }
         }
 
-        @keyframes naturalFloatRight {
+        @keyframes realisticButterflyFloatRight {
             0% {
-                transform: translateY(0px) rotate(0deg) scale(1);
+                transform: translateY(0px) rotate(0deg) scale(1) scaleX(1);
             }
-            33% {
-                transform: translateY(-4px) rotate(-2.5deg) scale(1.03);
+            25% {
+                transform: translateY(-5px) rotate(-3deg) scale(1.04) scaleX(0.92);
             }
-            66% {
-                transform: translateY(-7px) rotate(2deg) scale(1.05);
+            50% {
+                transform: translateY(-9px) rotate(2deg) scale(1.06) scaleX(1.04);
+            }
+            75% {
+                transform: translateY(-4px) rotate(-2deg) scale(1.02) scaleX(0.94);
             }
             100% {
-                transform: translateY(-3px) rotate(-1.5deg) scale(1.02);
+                transform: translateY(0px) rotate(0deg) scale(1) scaleX(1);
             }
         }
 
         .retreat-subtitle:hover .butterfly-left,
         .header-butterfly.butterfly-left:hover {
-            transform: translateY(-8px) scale(1.15) rotate(-5deg) !important;
-            filter: drop-shadow(0 6px 14px rgba(197, 160, 89, 0.5));
+            transform: translateY(-10px) scale(1.18) rotate(-6deg) !important;
+            filter: drop-shadow(0 8px 22px rgba(245, 158, 11, 0.75));
         }
 
         .retreat-subtitle:hover .butterfly-right,
         .header-butterfly.butterfly-right:hover {
-            transform: translateY(-8px) scale(1.15) rotate(5deg) !important;
-            filter: drop-shadow(0 6px 14px rgba(197, 160, 89, 0.5));
+            transform: translateY(-10px) scale(1.18) rotate(6deg) !important;
+            filter: drop-shadow(0 8px 22px rgba(245, 158, 11, 0.75));
         }
 
         .container {
@@ -569,9 +577,9 @@
 <header>
     <h2>Summerset Cottage & Suites</h2>
     <p class="retreat-subtitle">
-        <img src="butterfly-left.svg" alt="Real Butterfly" class="header-butterfly butterfly-left">
+        <img src="butterfly-left.svg" alt="Yellow Butterfly" class="header-butterfly butterfly-left">
         <span>Boutique Retreat</span>
-        <img src="butterfly-right.svg" alt="Real Butterfly" class="header-butterfly butterfly-right">
+        <img src="butterfly-right.svg" alt="Yellow Butterfly" class="header-butterfly butterfly-right">
     </p>
 </header>
 
