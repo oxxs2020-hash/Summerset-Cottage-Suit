@@ -397,27 +397,387 @@
             margin: 0;
         }
 
+        /* Interactive Booking Widget Styles */
         .booking-section {
-            text-align: center;
-            padding: 40px 0 80px 0;
+            padding: 30px 0 70px 0;
         }
 
-        .book-button {
+        .booking-widget-card {
+            max-width: 860px;
+            margin: 0 auto;
+            background: #FFFFFF;
+            border: 1px solid var(--accent-gold);
+            border-radius: 12px;
+            box-shadow: 0 16px 40px rgba(0, 0, 0, 0.06), 0 2px 10px rgba(197, 160, 89, 0.08);
+            padding: 40px 35px;
+            text-align: left;
+            position: relative;
+            overflow: visible;
+        }
+
+        .booking-widget-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, #C5A059 0%, #F5D78E 50%, #C5A059 100%);
+            border-radius: 12px 12px 0 0;
+        }
+
+        .widget-header {
+            text-align: center;
+            margin-bottom: 28px;
+        }
+
+        .widget-header h3 {
+            font-size: 1.85em;
+            color: var(--text-dark);
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .widget-header p {
+            color: var(--accent-gold);
+            font-size: 0.85em;
+            letter-spacing: 2.5px;
+            text-transform: uppercase;
+            margin: 0;
+            font-weight: 400;
+        }
+
+        .suite-toggle-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin-bottom: 28px;
+        }
+
+        .suite-toggle-item {
+            background: #FCFCFA;
+            border: 1.5px solid var(--border-light);
+            border-radius: 8px;
+            padding: 14px 16px;
+            cursor: pointer;
+            text-align: left;
+            transition: all 0.25s ease;
+            font-family: inherit;
+            display: flex;
+            flex-direction: column;
+            gap: 4px;
+            user-select: none;
+        }
+
+        .suite-toggle-item:hover {
+            border-color: var(--accent-gold);
+            background: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.15);
+        }
+
+        .suite-toggle-item.active {
+            border-color: var(--accent-gold);
+            background: #FFFDF9;
+            box-shadow: 0 0 0 1px var(--accent-gold), 0 6px 18px rgba(197, 160, 89, 0.16);
+        }
+
+        .suite-toggle-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.05em;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .suite-toggle-badge {
+            font-family: 'Lato', sans-serif;
+            font-size: 0.72em;
+            color: #C5A059;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            display: inline-flex;
+            align-items: center;
+            gap: 3px;
+        }
+
+        .suite-toggle-desc {
+            font-size: 0.8em;
+            color: var(--text-muted);
+            line-height: 1.4;
+        }
+
+        .booking-inputs-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1.2fr;
+            gap: 16px;
+            margin-bottom: 22px;
+        }
+
+        @media (max-width: 768px) {
+            .booking-inputs-row {
+                grid-template-columns: 1fr;
+            }
+            .booking-widget-card {
+                padding: 30px 20px;
+            }
+        }
+
+        .booking-input-group {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+            position: relative;
+        }
+
+        .booking-input-group label {
+            font-size: 0.75em;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            font-weight: 600;
+            color: var(--text-dark);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .nights-count-badge {
+            font-size: 0.85em;
+            color: var(--accent-gold);
+            font-weight: 500;
+            text-transform: none;
+            letter-spacing: 0;
+        }
+
+        .booking-input {
+            background: #FFFFFF;
+            border: 1px solid #D8D8D8;
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 0.95em;
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            transition: border-color 0.2s ease, box-shadow 0.2s ease;
+            outline: none;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        .booking-input:focus {
+            border-color: var(--accent-gold);
+            box-shadow: 0 0 0 3px rgba(197, 160, 89, 0.2);
+        }
+
+        .guests-btn-trigger {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            cursor: pointer;
+            user-select: none;
+            background: #FFFFFF;
+            border: 1px solid #D8D8D8;
+            border-radius: 6px;
+            padding: 12px 14px;
+            font-size: 0.95em;
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            transition: all 0.2s ease;
+        }
+
+        .guests-btn-trigger:hover,
+        .guests-btn-trigger.active {
+            border-color: var(--accent-gold);
+        }
+
+        .dropdown-chevron {
+            width: 14px;
+            height: 14px;
+            fill: var(--text-muted);
+            transition: transform 0.2s ease;
+        }
+
+        .guests-btn-trigger.active .dropdown-chevron {
+            transform: rotate(180deg);
+        }
+
+        .guests-popup {
+            position: absolute;
+            top: calc(100% + 6px);
+            left: 0;
+            right: 0;
+            background: #FFFFFF;
+            border: 1px solid var(--border-light);
+            border-radius: 8px;
+            box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+            padding: 18px 16px;
+            z-index: 1000;
+            display: none;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .guests-popup.open {
+            display: flex;
+        }
+
+        .guests-popup-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .guests-label-box h5 {
+            margin: 0 0 2px 0;
+            font-size: 0.92em;
+            color: var(--text-dark);
+            font-family: 'Lato', sans-serif;
+            font-weight: 600;
+        }
+
+        .guests-label-box span {
+            font-size: 0.78em;
+            color: var(--text-muted);
+        }
+
+        .guests-counter {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        .counter-btn {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            border: 1px solid #D0D0D0;
+            background: #FFFFFF;
+            color: var(--text-dark);
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            user-select: none;
+            padding: 0;
+            line-height: 1;
+        }
+
+        .counter-btn:hover:not(:disabled) {
+            border-color: var(--accent-gold);
+            color: var(--accent-gold);
+            background: #FFFDF9;
+        }
+
+        .counter-btn:disabled {
+            opacity: 0.35;
+            cursor: not-allowed;
+        }
+
+        .counter-number {
+            font-weight: 600;
+            font-size: 0.95em;
+            min-width: 18px;
+            text-align: center;
+            color: var(--text-dark);
+        }
+
+        .booking-trust-bar {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 12px;
+            padding: 12px 18px;
+            background: #FAF8F4;
+            border: 1px solid #F0ECE1;
+            border-radius: 6px;
+            margin-bottom: 24px;
+            font-size: 0.82em;
+            color: var(--text-muted);
+        }
+
+        .booking-trust-item {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+        }
+
+        .airbnb-icon-brand {
+            width: 18px;
+            height: 18px;
+            fill: #FF385C;
             display: inline-block;
+            vertical-align: middle;
+        }
+
+        .booking-cta-button {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            width: 100%;
             background-color: var(--accent-gold);
             color: #FFFFFF;
-            padding: 20px 60px;
-            font-size: 0.9em;
-            letter-spacing: 3px;
+            padding: 18px 30px;
+            font-size: 0.95em;
+            letter-spacing: 2.5px;
             text-transform: uppercase;
             text-decoration: none;
             border: 1px solid var(--accent-gold);
-            transition: all 0.4s ease;
+            border-radius: 6px;
+            font-weight: 500;
+            font-family: 'Playfair Display', serif;
+            cursor: pointer;
+            transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            box-shadow: 0 4px 15px rgba(197, 160, 89, 0.3);
+            box-sizing: border-box;
         }
 
-        .book-button:hover {
-            background-color: transparent;
+        .booking-cta-button:hover {
+            background-color: #B38E46;
+            border-color: #B38E46;
+            color: #FFFFFF;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 24px rgba(197, 160, 89, 0.45);
+        }
+
+        .booking-cta-button svg {
+            transition: transform 0.3s ease;
+        }
+
+        .booking-cta-button:hover svg {
+            transform: translateX(4px);
+        }
+
+        .direct-listings-links {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 24px;
+            flex-wrap: wrap;
+            font-size: 0.85em;
+            color: var(--text-muted);
+            margin-top: 16px;
+            text-align: center;
+        }
+
+        .direct-listing-link {
             color: var(--accent-gold);
+            text-decoration: none;
+            font-weight: 400;
+            display: inline-flex;
+            align-items: center;
+            gap: 4px;
+            border-bottom: 1px dotted var(--accent-gold);
+            transition: color 0.2s ease, border-color 0.2s ease;
+        }
+
+        .direct-listing-link:hover {
+            color: var(--text-dark);
+            border-bottom-style: solid;
         }
 
         /* Contact Section */
@@ -658,12 +1018,110 @@
             </div>
         </div>
 
+        <!-- Interactive Booking Widget: House & Pool -->
         <div class="booking-section">
-            <a href="#" class="book-button">Reserve Your Stay</a>
+            <div class="booking-widget-card" id="booking-widget-house">
+                <div class="widget-header">
+                    <h3>Reserve Your Stay</h3>
+                    <p>Direct Airbnb Reservation &bull; Best Rates Guaranteed</p>
+                </div>
+
+                <div class="suite-toggle-grid">
+                    <div class="suite-toggle-item active" data-suite="king" onclick="selectWidgetSuite('house', 'king')">
+                        <div class="suite-toggle-title">
+                            <span>The King Suite</span>
+                            <span class="suite-toggle-badge"><svg class="star-icon" style="width:14px;height:14px;fill:#F5B027;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 5.0 (39)</span>
+                        </div>
+                        <div class="suite-toggle-desc">King Bed &bull; Fireplace &bull; Kitchenette &bull; 2 Guests</div>
+                    </div>
+
+                    <div class="suite-toggle-item" data-suite="queen" onclick="selectWidgetSuite('house', 'queen')">
+                        <div class="suite-toggle-title">
+                            <span>The Queen Suite</span>
+                            <span class="suite-toggle-badge"><svg class="star-icon" style="width:14px;height:14px;fill:#F5B027;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 4.98 (28)</span>
+                        </div>
+                        <div class="suite-toggle-desc">Queen Bed &bull; Garden Views &bull; Fireplace &bull; 2 Guests</div>
+                    </div>
+                </div>
+
+                <div class="booking-inputs-row">
+                    <div class="booking-input-group">
+                        <label>Check-In <span class="nights-count-badge" id="nights-badge-house">Select Dates</span></label>
+                        <input type="date" class="booking-input" id="checkin-house" onchange="updateBookingWidget('house')">
+                    </div>
+
+                    <div class="booking-input-group">
+                        <label>Check-Out</label>
+                        <input type="date" class="booking-input" id="checkout-house" onchange="updateBookingWidget('house')">
+                    </div>
+
+                    <div class="booking-input-group">
+                        <label>Guests</label>
+                        <div class="guests-btn-trigger" id="guests-trigger-house" onclick="toggleGuestsPopup('house')">
+                            <span id="guests-label-house">2 Guests (2 Adults)</span>
+                            <svg class="dropdown-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+
+                        <div class="guests-popup" id="guests-popup-house">
+                            <div class="guests-popup-row">
+                                <div class="guests-label-box">
+                                    <h5>Adults</h5>
+                                    <span>Ages 13+</span>
+                                </div>
+                                <div class="guests-counter">
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('house', 'adults', -1)">-</button>
+                                    <span class="counter-number" id="adults-count-house">2</span>
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('house', 'adults', 1)">+</button>
+                                </div>
+                            </div>
+
+                            <div class="guests-popup-row">
+                                <div class="guests-label-box">
+                                    <h5>Children</h5>
+                                    <span>Ages 0–12</span>
+                                </div>
+                                <div class="guests-counter">
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('house', 'children', -1)">-</button>
+                                    <span class="counter-number" id="children-count-house">0</span>
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('house', 'children', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-trust-bar">
+                    <div class="booking-trust-item">
+                        <svg class="airbnb-icon-brand" viewBox="0 0 32 32"><path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533.993c2.732 5.12 6.716 13.064 6.716 17.738 0 5.514-4.225 9-12 9s-12-3.486-12-9c0-4.674 3.984-12.618 6.716-17.738l.533-.993C7.537 1.963 8.992 1 11 1h5zm0 2.2c-1.391 0-2.316.634-3.328 2.457l-.547 1.02C9.48 11.666 5.8 19.349 5.8 23c0 4.195 3.125 6.8 10.2 6.8s10.2-2.605 10.2-6.8c0-3.651-3.68-11.334-6.325-16.323l-.547-1.02C18.316 3.834 17.391 3.2 16 3.2zm0 10.8c3.088 0 5.6 2.512 5.6 5.6 0 3.21-2.695 5.6-5.6 5.6-2.905 0-5.6-2.39-5.6-5.6 0-3.088 2.512-5.6 5.6-5.6zm0 2.2c-1.874 0-3.4 1.526-3.4 3.4 0 1.988 1.624 3.4 3.4 3.4s3.4-1.412 3.4-3.4c0-1.874-1.526-3.4-3.4-3.4z"/></svg>
+                        <span>Airbnb Superhost &bull; Norm (10 Yrs)</span>
+                    </div>
+                    <div class="booking-trust-item">
+                        <span>Top 5% of Homes on Airbnb</span>
+                    </div>
+                    <div class="booking-trust-item">
+                        <span>Instant Confirmation</span>
+                    </div>
+                </div>
+
+                <a id="booking-cta-house" href="https://www.airbnb.com/rooms/1436142729628334485" target="_blank" rel="noopener noreferrer" class="booking-cta-button">
+                    <span>Reserve King Suite on Airbnb</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+
+                <div class="direct-listings-links">
+                    <span>Direct Airbnb Listings:</span>
+                    <a href="https://www.airbnb.com/rooms/1436142729628334485" target="_blank" rel="noopener noreferrer" class="direct-listing-link">
+                        👑 The King Suite Listing &rarr;
+                    </a>
+                    <a href="https://www.airbnb.com/rooms/1436434703423646137" target="_blank" rel="noopener noreferrer" class="direct-listing-link">
+                        🌿 The Queen Suite Listing &rarr;
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
-    <!-- KING記事 SUITE -->
+    <!-- KING SUITE -->
     <div id="king" class="suite-content">
         <div class="title-wrapper">
             <h1 class="suite-title">The King Suite</h1>
@@ -731,8 +1189,106 @@
             </div>
         </div>
 
+        <!-- Interactive Booking Widget: King Suite -->
         <div class="booking-section">
-            <a href="#" class="book-button">Reserve Your Stay</a>
+            <div class="booking-widget-card" id="booking-widget-king">
+                <div class="widget-header">
+                    <h3>Reserve The King Suite</h3>
+                    <p>Direct Airbnb Reservation &bull; Best Rates Guaranteed</p>
+                </div>
+
+                <div class="suite-toggle-grid">
+                    <div class="suite-toggle-item active" data-suite="king" onclick="selectWidgetSuite('king', 'king')">
+                        <div class="suite-toggle-title">
+                            <span>The King Suite</span>
+                            <span class="suite-toggle-badge"><svg class="star-icon" style="width:14px;height:14px;fill:#F5B027;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 5.0 (39)</span>
+                        </div>
+                        <div class="suite-toggle-desc">King Bed &bull; Fireplace &bull; Kitchenette &bull; 2 Guests</div>
+                    </div>
+
+                    <div class="suite-toggle-item" data-suite="queen" onclick="selectWidgetSuite('king', 'queen')">
+                        <div class="suite-toggle-title">
+                            <span>The Queen Suite</span>
+                            <span class="suite-toggle-badge"><svg class="star-icon" style="width:14px;height:14px;fill:#F5B027;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 4.98 (28)</span>
+                        </div>
+                        <div class="suite-toggle-desc">Queen Bed &bull; Garden Views &bull; Fireplace &bull; 2 Guests</div>
+                    </div>
+                </div>
+
+                <div class="booking-inputs-row">
+                    <div class="booking-input-group">
+                        <label>Check-In <span class="nights-count-badge" id="nights-badge-king">Select Dates</span></label>
+                        <input type="date" class="booking-input" id="checkin-king" onchange="updateBookingWidget('king')">
+                    </div>
+
+                    <div class="booking-input-group">
+                        <label>Check-Out</label>
+                        <input type="date" class="booking-input" id="checkout-king" onchange="updateBookingWidget('king')">
+                    </div>
+
+                    <div class="booking-input-group">
+                        <label>Guests</label>
+                        <div class="guests-btn-trigger" id="guests-trigger-king" onclick="toggleGuestsPopup('king')">
+                            <span id="guests-label-king">2 Guests (2 Adults)</span>
+                            <svg class="dropdown-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+
+                        <div class="guests-popup" id="guests-popup-king">
+                            <div class="guests-popup-row">
+                                <div class="guests-label-box">
+                                    <h5>Adults</h5>
+                                    <span>Ages 13+</span>
+                                </div>
+                                <div class="guests-counter">
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('king', 'adults', -1)">-</button>
+                                    <span class="counter-number" id="adults-count-king">2</span>
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('king', 'adults', 1)">+</button>
+                                </div>
+                            </div>
+
+                            <div class="guests-popup-row">
+                                <div class="guests-label-box">
+                                    <h5>Children</h5>
+                                    <span>Ages 0–12</span>
+                                </div>
+                                <div class="guests-counter">
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('king', 'children', -1)">-</button>
+                                    <span class="counter-number" id="children-count-king">0</span>
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('king', 'children', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-trust-bar">
+                    <div class="booking-trust-item">
+                        <svg class="airbnb-icon-brand" viewBox="0 0 32 32"><path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533.993c2.732 5.12 6.716 13.064 6.716 17.738 0 5.514-4.225 9-12 9s-12-3.486-12-9c0-4.674 3.984-12.618 6.716-17.738l.533-.993C7.537 1.963 8.992 1 11 1h5zm0 2.2c-1.391 0-2.316.634-3.328 2.457l-.547 1.02C9.48 11.666 5.8 19.349 5.8 23c0 4.195 3.125 6.8 10.2 6.8s10.2-2.605 10.2-6.8c0-3.651-3.68-11.334-6.325-16.323l-.547-1.02C18.316 3.834 17.391 3.2 16 3.2zm0 10.8c3.088 0 5.6 2.512 5.6 5.6 0 3.21-2.695 5.6-5.6 5.6-2.905 0-5.6-2.39-5.6-5.6 0-3.088 2.512-5.6 5.6-5.6zm0 2.2c-1.874 0-3.4 1.526-3.4 3.4 0 1.988 1.624 3.4 3.4 3.4s3.4-1.412 3.4-3.4c0-1.874-1.526-3.4-3.4-3.4z"/></svg>
+                        <span>Airbnb Superhost &bull; Norm (10 Yrs)</span>
+                    </div>
+                    <div class="booking-trust-item">
+                        <span>Top 5% of Homes on Airbnb</span>
+                    </div>
+                    <div class="booking-trust-item">
+                        <span>Instant Confirmation</span>
+                    </div>
+                </div>
+
+                <a id="booking-cta-king" href="https://www.airbnb.com/rooms/1436142729628334485" target="_blank" rel="noopener noreferrer" class="booking-cta-button">
+                    <span>Reserve King Suite on Airbnb</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+
+                <div class="direct-listings-links">
+                    <span>Direct Airbnb Listings:</span>
+                    <a href="https://www.airbnb.com/rooms/1436142729628334485" target="_blank" rel="noopener noreferrer" class="direct-listing-link">
+                        👑 The King Suite Listing &rarr;
+                    </a>
+                    <a href="https://www.airbnb.com/rooms/1436434703423646137" target="_blank" rel="noopener noreferrer" class="direct-listing-link">
+                        🌿 The Queen Suite Listing &rarr;
+                    </a>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -808,9 +1364,108 @@
             </div>
         </div>
 
+        <!-- Interactive Booking Widget: Queen Suite -->
         <div class="booking-section">
-            <a href="#" class="book-button">Reserve Your Stay</a>
+            <div class="booking-widget-card" id="booking-widget-queen">
+                <div class="widget-header">
+                    <h3>Reserve The Queen Suite</h3>
+                    <p>Direct Airbnb Reservation &bull; Best Rates Guaranteed</p>
+                </div>
+
+                <div class="suite-toggle-grid">
+                    <div class="suite-toggle-item" data-suite="king" onclick="selectWidgetSuite('queen', 'king')">
+                        <div class="suite-toggle-title">
+                            <span>The King Suite</span>
+                            <span class="suite-toggle-badge"><svg class="star-icon" style="width:14px;height:14px;fill:#F5B027;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 5.0 (39)</span>
+                        </div>
+                        <div class="suite-toggle-desc">King Bed &bull; Fireplace &bull; Kitchenette &bull; 2 Guests</div>
+                    </div>
+
+                    <div class="suite-toggle-item active" data-suite="queen" onclick="selectWidgetSuite('queen', 'queen')">
+                        <div class="suite-toggle-title">
+                            <span>The Queen Suite</span>
+                            <span class="suite-toggle-badge"><svg class="star-icon" style="width:14px;height:14px;fill:#F5B027;" viewBox="0 0 24 24"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg> 4.98 (28)</span>
+                        </div>
+                        <div class="suite-toggle-desc">Queen Bed &bull; Garden Views &bull; Fireplace &bull; 2 Guests</div>
+                    </div>
+                </div>
+
+                <div class="booking-inputs-row">
+                    <div class="booking-input-group">
+                        <label>Check-In <span class="nights-count-badge" id="nights-badge-queen">Select Dates</span></label>
+                        <input type="date" class="booking-input" id="checkin-queen" onchange="updateBookingWidget('queen')">
+                    </div>
+
+                    <div class="booking-input-group">
+                        <label>Check-Out</label>
+                        <input type="date" class="booking-input" id="checkout-queen" onchange="updateBookingWidget('queen')">
+                    </div>
+
+                    <div class="booking-input-group">
+                        <label>Guests</label>
+                        <div class="guests-btn-trigger" id="guests-trigger-queen" onclick="toggleGuestsPopup('queen')">
+                            <span id="guests-label-queen">2 Guests (2 Adults)</span>
+                            <svg class="dropdown-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+                        </div>
+
+                        <div class="guests-popup" id="guests-popup-queen">
+                            <div class="guests-popup-row">
+                                <div class="guests-label-box">
+                                    <h5>Adults</h5>
+                                    <span>Ages 13+</span>
+                                </div>
+                                <div class="guests-counter">
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('queen', 'adults', -1)">-</button>
+                                    <span class="counter-number" id="adults-count-queen">2</span>
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('queen', 'adults', 1)">+</button>
+                                </div>
+                            </div>
+
+                            <div class="guests-popup-row">
+                                <div class="guests-label-box">
+                                    <h5>Children</h5>
+                                    <span>Ages 0–12</span>
+                                </div>
+                                <div class="guests-counter">
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('queen', 'children', -1)">-</button>
+                                    <span class="counter-number" id="children-count-queen">0</span>
+                                    <button type="button" class="counter-btn" onclick="adjustGuests('queen', 'children', 1)">+</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="booking-trust-bar">
+                    <div class="booking-trust-item">
+                        <svg class="airbnb-icon-brand" viewBox="0 0 32 32"><path d="M16 1c2.008 0 3.463.963 4.751 3.269l.533.993c2.732 5.12 6.716 13.064 6.716 17.738 0 5.514-4.225 9-12 9s-12-3.486-12-9c0-4.674 3.984-12.618 6.716-17.738l.533-.993C7.537 1.963 8.992 1 11 1h5zm0 2.2c-1.391 0-2.316.634-3.328 2.457l-.547 1.02C9.48 11.666 5.8 19.349 5.8 23c0 4.195 3.125 6.8 10.2 6.8s10.2-2.605 10.2-6.8c0-3.651-3.68-11.334-6.325-16.323l-.547-1.02C18.316 3.834 17.391 3.2 16 3.2zm0 10.8c3.088 0 5.6 2.512 5.6 5.6 0 3.21-2.695 5.6-5.6 5.6-2.905 0-5.6-2.39-5.6-5.6 0-3.088 2.512-5.6 5.6-5.6zm0 2.2c-1.874 0-3.4 1.526-3.4 3.4 0 1.988 1.624 3.4 3.4 3.4s3.4-1.412 3.4-3.4c0-1.874-1.526-3.4-3.4-3.4z"/></svg>
+                        <span>Airbnb Superhost &bull; Norm (10 Yrs)</span>
+                    </div>
+                    <div class="booking-trust-item">
+                        <span>Top 5% of Homes on Airbnb</span>
+                    </div>
+                    <div class="booking-trust-item">
+                        <span>Instant Confirmation</span>
+                    </div>
+                </div>
+
+                <a id="booking-cta-queen" href="https://www.airbnb.com/rooms/1436434703423646137" target="_blank" rel="noopener noreferrer" class="booking-cta-button">
+                    <span>Reserve Queen Suite on Airbnb</span>
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
+                </a>
+
+                <div class="direct-listings-links">
+                    <span>Direct Airbnb Listings:</span>
+                    <a href="https://www.airbnb.com/rooms/1436142729628334485" target="_blank" rel="noopener noreferrer" class="direct-listing-link">
+                        👑 The King Suite Listing &rarr;
+                    </a>
+                    <a href="https://www.airbnb.com/rooms/1436434703423646137" target="_blank" rel="noopener noreferrer" class="direct-listing-link">
+                        🌿 The Queen Suite Listing &rarr;
+                    </a>
+                </div>
+            </div>
         </div>
+    </div>
     </div>
 
 </div>
@@ -1029,10 +1684,202 @@
         }
     });
 
-    // Autoplay music when page loads
-    bgMusic.play().catch(function(err) {
-        console.log("Autoplay blocked by browser. User can click music button to play.");
-    });
+    // ==========================================
+    // Interactive Airbnb Booking Widget Logic
+    // ==========================================
+    const AIRBNB_SUITES = {
+        king: {
+            id: '1436142729628334485',
+            name: 'The King Suite',
+            maxGuests: 2
+        },
+        queen: {
+            id: '1436434703423646137',
+            name: 'The Queen Suite',
+            maxGuests: 2
+        }
+    };
+
+    const bookingWidgetsState = {
+        house: { selectedSuite: 'king', adults: 2, children: 0 },
+        king: { selectedSuite: 'king', adults: 2, children: 0 },
+        queen: { selectedSuite: 'queen', adults: 2, children: 0 }
+    };
+
+    function initBookingWidgets() {
+        const today = new Date();
+        const yyyy = today.getFullYear();
+        const mm = String(today.getMonth() + 1).padStart(2, '0');
+        const dd = String(today.getDate()).padStart(2, '0');
+        const minDateStr = `${yyyy}-${mm}-${dd}`;
+
+        // Default checkin 7 days from now, checkout 10 days from now (3 nights)
+        const checkinDefault = new Date();
+        checkinDefault.setDate(today.getDate() + 7);
+        const checkoutDefault = new Date();
+        checkoutDefault.setDate(today.getDate() + 10);
+
+        const formatDate = (d) => {
+            const y = d.getFullYear();
+            const m = String(d.getMonth() + 1).padStart(2, '0');
+            const day = String(d.getDate()).padStart(2, '0');
+            return `${y}-${m}-${day}`;
+        };
+
+        ['house', 'king', 'queen'].forEach(wId => {
+            const cinInput = document.getElementById(`checkin-${wId}`);
+            const coutInput = document.getElementById(`checkout-${wId}`);
+            if (cinInput && coutInput) {
+                cinInput.min = minDateStr;
+                coutInput.min = minDateStr;
+                cinInput.value = formatDate(checkinDefault);
+                coutInput.value = formatDate(checkoutDefault);
+                updateBookingWidget(wId);
+            }
+        });
+
+        // Close guest popup on outside click
+        document.addEventListener('click', function(e) {
+            ['house', 'king', 'queen'].forEach(wId => {
+                const popup = document.getElementById(`guests-popup-${wId}`);
+                const trigger = document.getElementById(`guests-trigger-${wId}`);
+                if (popup && trigger && !trigger.contains(e.target) && !popup.contains(e.target)) {
+                    popup.classList.remove('open');
+                    trigger.classList.remove('active');
+                }
+            });
+        });
+    }
+
+    function selectWidgetSuite(widgetId, suiteKey) {
+        if (!bookingWidgetsState[widgetId]) return;
+        bookingWidgetsState[widgetId].selectedSuite = suiteKey;
+
+        const widgetEl = document.getElementById(`booking-widget-${widgetId}`);
+        if (widgetEl) {
+            const toggleButtons = widgetEl.querySelectorAll('.suite-toggle-item');
+            toggleButtons.forEach(btn => {
+                if (btn.getAttribute('data-suite') === suiteKey) {
+                    btn.classList.add('active');
+                } else {
+                    btn.classList.remove('active');
+                }
+            });
+        }
+        updateBookingWidget(widgetId);
+    }
+
+    function toggleGuestsPopup(widgetId) {
+        const popup = document.getElementById(`guests-popup-${widgetId}`);
+        const trigger = document.getElementById(`guests-trigger-${widgetId}`);
+        if (popup && trigger) {
+            const isOpen = popup.classList.toggle('open');
+            trigger.classList.toggle('active', isOpen);
+        }
+    }
+
+    function adjustGuests(widgetId, type, delta) {
+        const state = bookingWidgetsState[widgetId];
+        if (!state) return;
+
+        const suiteConfig = AIRBNB_SUITES[state.selectedSuite] || AIRBNB_SUITES.king;
+        const maxTotalGuests = suiteConfig.maxGuests;
+
+        if (type === 'adults') {
+            const nextVal = state.adults + delta;
+            if (nextVal >= 1 && (nextVal + state.children) <= maxTotalGuests) {
+                state.adults = nextVal;
+            }
+        } else if (type === 'children') {
+            const nextVal = state.children + delta;
+            if (nextVal >= 0 && (state.adults + nextVal) <= maxTotalGuests) {
+                state.children = nextVal;
+            }
+        }
+
+        const adultsCountEl = document.getElementById(`adults-count-${widgetId}`);
+        const childrenCountEl = document.getElementById(`children-count-${widgetId}`);
+        if (adultsCountEl) adultsCountEl.textContent = state.adults;
+        if (childrenCountEl) childrenCountEl.textContent = state.children;
+
+        const totalGuests = state.adults + state.children;
+        const labelEl = document.getElementById(`guests-label-${widgetId}`);
+        if (labelEl) {
+            labelEl.textContent = `${totalGuests} ${totalGuests === 1 ? 'Guest' : 'Guests'} (${state.adults} ${state.adults === 1 ? 'Adult' : 'Adults'}${state.children > 0 ? `, ${state.children} Child${state.children > 1 ? 'ren' : ''}` : ''})`;
+        }
+
+        updateBookingWidget(widgetId);
+    }
+
+    function updateBookingWidget(widgetId) {
+        const state = bookingWidgetsState[widgetId];
+        if (!state) return;
+
+        const cinInput = document.getElementById(`checkin-${widgetId}`);
+        const coutInput = document.getElementById(`checkout-${widgetId}`);
+        const ctaBtn = document.getElementById(`booking-cta-${widgetId}`);
+        const nightsBadge = document.getElementById(`nights-badge-${widgetId}`);
+
+        if (!cinInput || !coutInput || !ctaBtn) return;
+
+        const checkInVal = cinInput.value;
+        let checkOutVal = coutInput.value;
+
+        // Ensure checkout is strictly after checkin
+        if (checkInVal) {
+            const nextDay = new Date(checkInVal);
+            nextDay.setDate(nextDay.getDate() + 1);
+            const y = nextDay.getFullYear();
+            const m = String(nextDay.getMonth() + 1).padStart(2, '0');
+            const d = String(nextDay.getDate()).padStart(2, '0');
+            const minCoutStr = `${y}-${m}-${d}`;
+            coutInput.min = minCoutStr;
+
+            if (checkOutVal && checkOutVal <= checkInVal) {
+                checkOutVal = minCoutStr;
+                coutInput.value = minCoutStr;
+            }
+        }
+
+        // Calculate nights
+        let nightCount = 0;
+        if (checkInVal && checkOutVal) {
+            const d1 = new Date(checkInVal);
+            const d2 = new Date(checkOutVal);
+            const diffTime = d2 - d1;
+            nightCount = Math.max(1, Math.round(diffTime / (1000 * 60 * 60 * 24)));
+            if (nightsBadge) {
+                nightsBadge.textContent = `${nightCount} ${nightCount === 1 ? 'Night' : 'Nights'}`;
+            }
+        } else if (nightsBadge) {
+            nightsBadge.textContent = 'Select Dates';
+        }
+
+        const suiteKey = state.selectedSuite || 'king';
+        const suiteInfo = AIRBNB_SUITES[suiteKey] || AIRBNB_SUITES.king;
+
+        // Build dynamic direct Airbnb listing URL
+        let url = `https://www.airbnb.com/rooms/${suiteInfo.id}?`;
+        const params = [];
+        if (checkInVal) params.push(`check_in=${encodeURIComponent(checkInVal)}`);
+        if (checkOutVal) params.push(`check_out=${encodeURIComponent(checkOutVal)}`);
+        if (state.adults) params.push(`adults=${encodeURIComponent(state.adults)}`);
+        if (state.children > 0) params.push(`children=${encodeURIComponent(state.children)}`);
+        url += params.join('&');
+
+        ctaBtn.href = url;
+        const ctaSpan = ctaBtn.querySelector('span');
+        if (ctaSpan) {
+            ctaSpan.textContent = `Reserve ${suiteInfo.name} on Airbnb`;
+        }
+    }
+
+    // Initialize all booking widgets on load
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initBookingWidgets);
+    } else {
+        initBookingWidgets();
+    }
 </script>
 
 </body>
