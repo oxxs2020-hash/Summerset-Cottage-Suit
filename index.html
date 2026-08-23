@@ -506,6 +506,7 @@
         
         <div class="section-block">
             <h3 class="section-title">Explore the Property</h3>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">Swipe or drag to view gallery</p>
             <div class="photo-gallery">
                 <img src="NORM HOUSE AND POOL/IMG-20260802-WA0023.jpg" alt="House Property 1">
                 <img src="NORM HOUSE AND POOL/IMG-20260802-WA0044.jpg" alt="House Property 2">
@@ -576,6 +577,7 @@
         
         <div class="section-block">
             <h3 class="section-title">Tour the Suite</h3>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">Swipe or drag to view gallery</p>
             <div class="photo-gallery">
                 <img src="NORM KING SUIT/Screenshot_20260812_234620_Airbnb.jpg" alt="King Suite Image 1">
                 <img src="NORM KING SUIT/Screenshot_20260812_234624_Airbnb.jpg" alt="King Suite Image 2">
@@ -648,6 +650,7 @@
         
         <div class="section-block">
             <h3 class="section-title">Tour the Suite</h3>
+            <p style="text-align: center; color: var(--text-muted); font-size: 0.9em; margin-bottom: 20px;">Swipe or drag to view gallery</p>
             <div class="photo-gallery">
                 <img src="NORM QUEEN SUIT/pic tv.jpeg" alt="Queen Suite Fireplace and TV">
                 <img src="NORM KING SUIT/Screenshot_20260812_234635_Airbnb.jpg" alt="Queen Suite Bedroom & Fireplace">
@@ -760,26 +763,39 @@
         buttons.forEach(btn => btn.classList.remove('active'));
         
         // Show selected suite
-        document.getElementById(suite).classList.add('active');
+        const targetSection = document.getElementById(suite);
+        if (targetSection) {
+            targetSection.classList.add('active');
+        }
         
-        // Add active class to clicked button
-        event.target.classList.add('active');
-
-        // Re-evaluate GSAP perspective when switching tabs
-        setTimeout(() => {
-            const activeContent = document.getElementById(suite);
-            if (activeContent) {
-                const gal = activeContent.querySelector('.photo-gallery');
-                if (gal && gal._updatePerspective) {
-                    gal._updatePerspective();
-                }
+        // Add active class to corresponding button
+        buttons.forEach(btn => {
+            if (btn.getAttribute('onclick') && btn.getAttribute('onclick').includes(suite)) {
+                btn.classList.add('active');
             }
-        }, 50);
+        });
+
+        // Re-evaluate GSAP perspective for the active suite's gallery
+        if (window.updateAllGalleries) {
+            requestAnimationFrame(() => {
+                window.updateAllGalleries();
+                setTimeout(window.updateAllGalleries, 50);
+                setTimeout(window.updateAllGalleries, 150);
+            });
+        }
     }
 
-    // GSAP Horizontal Perspective Scroll & Drag Engine
+    // GSAP Horizontal Perspective Scroll & Drag Engine for All Galleries
     function initGalleryPerspective() {
         const galleries = document.querySelectorAll('.photo-gallery');
+
+        window.updateAllGalleries = function() {
+            galleries.forEach(gallery => {
+                if (gallery._updatePerspective) {
+                    gallery._updatePerspective();
+                }
+            });
+        };
 
         galleries.forEach(gallery => {
             const images = gallery.querySelectorAll('img');
@@ -788,18 +804,23 @@
 
             function updatePerspective() {
                 const rect = gallery.getBoundingClientRect();
+                // Skip calculation if gallery is inside a hidden tab (width is 0)
+                if (!rect.width || rect.width === 0) return;
+
                 const galleryCenter = rect.left + rect.width / 2;
                 const maxDistance = rect.width / 2;
 
                 images.forEach(img => {
                     const imgRect = img.getBoundingClientRect();
+                    if (!imgRect.width || imgRect.width === 0) return;
+
                     const imgCenter = imgRect.left + imgRect.width / 2;
                     // Normalized distance from center (-1 to 1 across visible viewport)
                     const distFromCenter = (imgCenter - galleryCenter) / maxDistance;
                     const clampedDist = Math.max(-1.5, Math.min(1.5, distFromCenter));
                     const absDist = Math.min(1, Math.abs(clampedDist));
 
-                    // Scale up to 1.1 at the center, smoothly down to 0.82 at edges
+                    // Scale up to 1.1 at center, smoothly down to 0.82 at edges
                     const scale = 1.1 - (absDist * 0.28);
 
                     // Dynamic 3D Y-axis rotation based on scroll progress along X-axis
