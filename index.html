@@ -37,23 +37,22 @@
             margin: 0;
         }
 
-        .hero-banner {
+        .hero-banner-wrap {
             width: 100%;
-            height: 540px;
-            background-image: url('Norms house front.jpeg');
-            background-size: cover;
-            background-repeat: no-repeat;
-            background-position: center top;
-            background-attachment: fixed;
+            background-color: var(--primary-bg);
             border-bottom: 1px solid var(--border-light);
-            position: relative;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        @media (max-width: 768px) {
-            .hero-banner {
-                height: 380px;
-                background-attachment: scroll;
-            }
+        .hero-banner-img {
+            width: 100%;
+            max-width: 100%;
+            height: auto;
+            display: block;
+            object-fit: contain;
         }
 
         .brand-header {
@@ -217,6 +216,16 @@
             font-size: 3.5em;
             color: var(--text-dark);
             margin-bottom: 10px;
+        }
+
+        .creator-tag {
+            font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+            font-size: 1.35em;
+            font-style: italic;
+            font-weight: 500;
+            color: var(--accent-gold);
+            letter-spacing: 1px;
+            margin: 4px 0 8px 0;
         }
 
         .location {
@@ -996,7 +1005,9 @@
 <body>
 
 
-<div class="hero-banner" role="img" aria-label="Summerset Cottage Front Grounds"></div>
+<div class="hero-banner-wrap">
+    <img src="Norms house front.jpeg" alt="Summerset Cottage &amp; Suites Front Grounds" class="hero-banner-img" fetchpriority="high">
+</div>
 
 <header class="brand-header">
     <h1>Summerset Cottage & Suites</h1>
@@ -1021,6 +1032,7 @@
     <div id="house" class="suite-content active">
         <div class="title-wrapper">
             <h2 class="suite-title">House & Pool</h2>
+            <div class="creator-tag">Designed &amp; Created by Norm Jones</div>
             <div class="location">Douglas, Michigan</div>
         </div>
 
