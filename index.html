@@ -4,7 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Summerset Cottage & Suites</title>
-    <link href="https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400;1,600&family=Lora:ital,wght@0,400;0,500;1,400&family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Plus+Jakarta+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --primary-bg: #FCFCFA;
@@ -14,19 +16,24 @@
             --border-light: #EAEAEA;
         }
 
+        html {
+            scroll-behavior: smooth;
+        }
+
         body {
-            font-family: 'Lato', sans-serif;
+            font-family: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
             margin: 0;
             padding: 0;
             color: var(--text-dark);
             background-color: var(--primary-bg);
-            line-height: 1.8;
-            font-weight: 300;
+            line-height: 1.85;
+            font-weight: 350;
+            -webkit-font-smoothing: antialiased;
         }
 
         h1, h2, h3, h4 {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
+            font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+            font-weight: 500;
             margin: 0;
         }
 
@@ -269,8 +276,11 @@
         }
 
         .section-title {
-            font-size: 2em;
-            margin-bottom: 30px;
+            font-family: 'Cormorant Garamond', 'Playfair Display', Georgia, serif;
+            font-size: 2.5em;
+            font-weight: 600;
+            letter-spacing: 0.5px;
+            margin-bottom: 25px;
             color: var(--text-dark);
             text-align: center;
         }
@@ -278,18 +288,124 @@
         .section-title::after {
             content: '';
             display: block;
-            width: 40px;
+            width: 45px;
             height: 2px;
             background-color: var(--accent-gold);
-            margin: 20px auto 0;
+            margin: 18px auto 0;
         }
 
         .description p {
             text-align: center;
-            font-size: 1.1em;
-            color: var(--text-muted);
-            max-width: 750px;
-            margin: 0 auto 25px auto;
+            font-family: 'Lora', 'Plus Jakarta Sans', Georgia, serif;
+            font-size: 1.12em;
+            font-weight: 400;
+            color: #4A4A46;
+            line-height: 1.95;
+            max-width: 780px;
+            margin: 0 auto 24px auto;
+            letter-spacing: 0.15px;
+        }
+
+        .description p:first-of-type {
+            font-size: 1.24em;
+            color: #282826;
+            font-weight: 400;
+            line-height: 1.9;
+        }
+
+        /* Direct Booking Benefit Callout Banner */
+        .direct-booking-banner {
+            background: linear-gradient(135deg, #FAF7F0 0%, #FFFFFF 100%);
+            border: 1px solid rgba(197, 160, 89, 0.38);
+            border-left: 4px solid var(--accent-gold);
+            border-radius: 12px;
+            padding: 24px 28px;
+            margin: 0 0 28px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 24px;
+            box-shadow: 0 4px 18px rgba(0, 0, 0, 0.03);
+            text-align: left;
+        }
+
+        .direct-booking-content {
+            flex: 1;
+        }
+
+        .direct-booking-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            background: rgba(197, 160, 89, 0.14);
+            color: #9C7730;
+            font-size: 0.76em;
+            font-weight: 600;
+            letter-spacing: 1.4px;
+            text-transform: uppercase;
+            padding: 4px 12px;
+            border-radius: 20px;
+            margin-bottom: 8px;
+        }
+
+        .direct-booking-content h4 {
+            font-family: 'Cormorant Garamond', 'Playfair Display', serif;
+            font-size: 1.55em;
+            font-weight: 600;
+            color: var(--text-dark);
+            margin: 0 0 6px 0;
+            letter-spacing: 0.3px;
+        }
+
+        .direct-booking-content p {
+            margin: 0;
+            font-size: 0.96em;
+            color: #585854;
+            line-height: 1.6;
+        }
+
+        .direct-booking-content strong {
+            color: #9C7730;
+            font-weight: 600;
+        }
+
+        .direct-contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background-color: var(--accent-gold);
+            color: #FFFFFF !important;
+            padding: 13px 22px;
+            border-radius: 6px;
+            font-size: 0.88em;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-decoration: none;
+            text-transform: uppercase;
+            white-space: nowrap;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 12px rgba(197, 160, 89, 0.25);
+            flex-shrink: 0;
+        }
+
+        .direct-contact-btn:hover {
+            background-color: #B38E46;
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(197, 160, 89, 0.4);
+        }
+
+        @media (max-width: 768px) {
+            .direct-booking-banner {
+                flex-direction: column;
+                align-items: flex-start;
+                padding: 20px;
+                gap: 16px;
+            }
+            .direct-contact-btn {
+                width: 100%;
+                justify-content: center;
+                box-sizing: border-box;
+            }
         }
 
         .photo-gallery {
@@ -895,16 +1011,16 @@
     
     <div class="suite-selector">
         <div class="suite-buttons">
-            <button class="suite-button active" onclick="showSuite('house')">Norms House & Pool</button>
+            <button class="suite-button active" onclick="showSuite('house')">House & Pool</button>
             <button class="suite-button" onclick="showSuite('king')">King Suite</button>
             <button class="suite-button" onclick="showSuite('queen')">Queen Suite</button>
         </div>
     </div>
 
-    <!-- NORMS HOUSE & POOL -->
+    <!-- HOUSE & POOL -->
     <div id="house" class="suite-content active">
         <div class="title-wrapper">
-            <h2 class="suite-title">Norms House & Pool</h2>
+            <h2 class="suite-title">House & Pool</h2>
             <div class="location">Douglas, Michigan</div>
         </div>
 
@@ -968,6 +1084,21 @@
 
         <!-- Interactive Booking Widget: House & Pool -->
         <div class="booking-section">
+            <!-- Direct Booking Callout -->
+            <div class="direct-booking-banner">
+                <div class="direct-booking-content">
+                    <div class="direct-booking-badge">
+                        <svg class="star-icon" viewBox="0 0 24 24" style="width:14px;height:14px;fill:#C5A059;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>Direct Booking Benefit</span>
+                    </div>
+                    <h4>Reservation on Airbnb Direct &bull; Or Save 10% Direct</h4>
+                    <p>Reserve on Airbnb Direct where you can read all guest reviews — or <strong>save 10%</strong> when you book directly with host Norm!</p>
+                </div>
+                <a href="#contact" class="direct-contact-btn">
+                    <span>Book Direct &amp; Save 10% &rarr;</span>
+                </a>
+            </div>
+
             <div class="booking-widget-card" id="booking-widget-house">
                 <div class="widget-header">
                     <h3>Reserve Your Stay</h3>
@@ -1139,6 +1270,21 @@
 
         <!-- Interactive Booking Widget: King Suite -->
         <div class="booking-section">
+            <!-- Direct Booking Callout -->
+            <div class="direct-booking-banner">
+                <div class="direct-booking-content">
+                    <div class="direct-booking-badge">
+                        <svg class="star-icon" viewBox="0 0 24 24" style="width:14px;height:14px;fill:#C5A059;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>Direct Booking Benefit</span>
+                    </div>
+                    <h4>Reservation on Airbnb Direct &bull; Or Save 10% Direct</h4>
+                    <p>Reserve on Airbnb Direct where you can read all guest reviews — or <strong>save 10%</strong> when you book directly with host Norm!</p>
+                </div>
+                <a href="#contact" class="direct-contact-btn">
+                    <span>Book Direct &amp; Save 10% &rarr;</span>
+                </a>
+            </div>
+
             <div class="booking-widget-card" id="booking-widget-king">
                 <div class="widget-header">
                     <h3>Reserve The King Suite</h3>
@@ -1314,6 +1460,21 @@
 
         <!-- Interactive Booking Widget: Queen Suite -->
         <div class="booking-section">
+            <!-- Direct Booking Callout -->
+            <div class="direct-booking-banner">
+                <div class="direct-booking-content">
+                    <div class="direct-booking-badge">
+                        <svg class="star-icon" viewBox="0 0 24 24" style="width:14px;height:14px;fill:#C5A059;"><path d="M12 17.27L18.18 21l-1.64-7.03L22 9.24l-7.19-.61L12 2 9.19 8.63 2 9.24l5.46 4.73L5.82 21z"/></svg>
+                        <span>Direct Booking Benefit</span>
+                    </div>
+                    <h4>Reservation on Airbnb Direct &bull; Or Save 10% Direct</h4>
+                    <p>Reserve on Airbnb Direct where you can read all guest reviews — or <strong>save 10%</strong> when you book directly with host Norm!</p>
+                </div>
+                <a href="#contact" class="direct-contact-btn">
+                    <span>Book Direct &amp; Save 10% &rarr;</span>
+                </a>
+            </div>
+
             <div class="booking-widget-card" id="booking-widget-queen">
                 <div class="widget-header">
                     <h3>Reserve The Queen Suite</h3>
@@ -1414,12 +1575,11 @@
             </div>
         </div>
     </div>
-    </div>
 
 </div>
 
 <!-- CONTACT SECTION -->
-<div class="contact-section">
+<div class="contact-section" id="contact">
     <h2>Get In Touch</h2>
     <div class="contact-grid">
         <div class="contact-item">
