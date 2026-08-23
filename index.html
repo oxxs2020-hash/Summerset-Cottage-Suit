@@ -66,7 +66,7 @@
             display: inline-flex;
             align-items: center;
             justify-content: center;
-            gap: 18px;
+            gap: 16px;
             margin: 12px 0 0 0;
             font-size: clamp(0.85em, 2vw, 1em);
             letter-spacing: 3px;
@@ -76,73 +76,66 @@
         }
 
         .header-butterfly {
-            width: clamp(42px, 5.5vw, 54px);
+            width: clamp(38px, 5vw, 48px);
             height: auto;
             display: inline-block;
             vertical-align: middle;
-            filter: drop-shadow(0 3px 8px rgba(245, 158, 11, 0.35));
+            filter: drop-shadow(0 2px 6px rgba(0, 0, 0, 0.22));
             cursor: pointer;
             pointer-events: auto;
             will-change: transform;
-            transition: filter 0.4s ease;
-            transform-origin: center center;
+            transition: filter 0.4s ease, transform 0.4s ease;
         }
 
         .butterfly-left {
-            animation: butterflyFloatLeft 4.2s ease-in-out infinite;
+            animation: naturalFloatLeft 4.8s ease-in-out infinite alternate;
         }
 
         .butterfly-right {
-            animation: butterflyFloatRight 4.2s ease-in-out infinite;
-            animation-delay: -2.1s;
+            animation: naturalFloatRight 4.8s ease-in-out infinite alternate;
+            animation-delay: -2.4s;
         }
 
-        @keyframes butterflyFloatLeft {
+        @keyframes naturalFloatLeft {
             0% {
-                transform: translateY(0px) rotate(-12deg) scale(1);
+                transform: translateY(0px) rotate(0deg) scale(1);
             }
-            25% {
-                transform: translateY(-5px) rotate(-8deg) scale(1.04) scaleX(0.92);
+            33% {
+                transform: translateY(-4px) rotate(2.5deg) scale(1.03);
             }
-            50% {
-                transform: translateY(-9px) rotate(-15deg) scale(1.06) scaleX(1.04);
-            }
-            75% {
-                transform: translateY(-4px) rotate(-9deg) scale(1.02) scaleX(0.94);
+            66% {
+                transform: translateY(-7px) rotate(-2deg) scale(1.05);
             }
             100% {
-                transform: translateY(0px) rotate(-12deg) scale(1);
+                transform: translateY(-3px) rotate(1.5deg) scale(1.02);
             }
         }
 
-        @keyframes butterflyFloatRight {
+        @keyframes naturalFloatRight {
             0% {
-                transform: scaleX(-1) translateY(0px) rotate(-12deg) scale(1);
+                transform: translateY(0px) rotate(0deg) scale(1);
             }
-            25% {
-                transform: scaleX(-1) translateY(-5px) rotate(-8deg) scale(1.04) scaleX(0.92);
+            33% {
+                transform: translateY(-4px) rotate(-2.5deg) scale(1.03);
             }
-            50% {
-                transform: scaleX(-1) translateY(-9px) rotate(-15deg) scale(1.06) scaleX(1.04);
-            }
-            75% {
-                transform: scaleX(-1) translateY(-4px) rotate(-9deg) scale(1.02) scaleX(0.94);
+            66% {
+                transform: translateY(-7px) rotate(2deg) scale(1.05);
             }
             100% {
-                transform: scaleX(-1) translateY(0px) rotate(-12deg) scale(1);
+                transform: translateY(-3px) rotate(-1.5deg) scale(1.02);
             }
         }
 
         .retreat-subtitle:hover .butterfly-left,
         .header-butterfly.butterfly-left:hover {
-            animation-duration: 2s;
-            filter: drop-shadow(0 8px 20px rgba(245, 158, 11, 0.7));
+            transform: translateY(-8px) scale(1.15) rotate(-5deg) !important;
+            filter: drop-shadow(0 6px 14px rgba(197, 160, 89, 0.5));
         }
 
         .retreat-subtitle:hover .butterfly-right,
         .header-butterfly.butterfly-right:hover {
-            animation-duration: 2s;
-            filter: drop-shadow(0 8px 20px rgba(245, 158, 11, 0.7));
+            transform: translateY(-8px) scale(1.15) rotate(5deg) !important;
+            filter: drop-shadow(0 6px 14px rgba(197, 160, 89, 0.5));
         }
 
         .container {
@@ -576,9 +569,9 @@
 <header>
     <h2>Summerset Cottage & Suites</h2>
     <p class="retreat-subtitle">
-        <img src="butterfly.svg" alt="Yellow Butterfly" class="header-butterfly butterfly-left">
+        <img src="butterfly-left.svg" alt="Real Butterfly" class="header-butterfly butterfly-left">
         <span>Boutique Retreat</span>
-        <img src="butterfly.svg" alt="Yellow Butterfly" class="header-butterfly butterfly-right">
+        <img src="butterfly-right.svg" alt="Real Butterfly" class="header-butterfly butterfly-right">
     </p>
 </header>
 
